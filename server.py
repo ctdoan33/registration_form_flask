@@ -3,7 +3,6 @@ import re
 import datetime
 DIG_REGEX = re.compile(r".*[0-9].*")
 EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$")
-MIN8_REGEX = re.compile(r".{8}.*")
 UPPER_REGEX = re.compile(r".*[A-Z].*")
 app = Flask(__name__)
 app.secret_key = "KeepItSecretKeepItSafe"
@@ -46,7 +45,7 @@ def valid():
     if len(request.form["password"]) < 1:
         flash("Password must not be blank!")
         valid = False
-    elif not MIN8_REGEX.match(request.form["password"]):
+    elif len(request.form["password"])<8:
         flash("Password must be 8 or more characters!")
         valid = False
     else:
@@ -56,7 +55,7 @@ def valid():
         if not DIG_REGEX.match(request.form["password"]):
             flash("Password must have at least 1 number!")
             valid = False
-    if len(request.form["password"]) < 1:
+    if len(request.form["confirm_password"]) < 1:
         flash("Password confirmation cannot be blank!")
         valid = False
     elif request.form["password"] != request.form["confirm_password"]:
