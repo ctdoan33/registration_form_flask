@@ -9,11 +9,11 @@
 <body>
     <h1>Registration Form</h1>
     {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <p>{{message}}</p>
-            {% endfor %}
-        {% endif %}
+    {% if messages %}
+    {% for message in messages %}
+        <p>{{message}}</p>
+    {% endfor %}
+    {% endif %}
     {% endwith %}
     <form action="/reg" method="post">
     <p>First Name:</p>
@@ -21,7 +21,7 @@
     <p>Last Name:</p>
     <input type="text" name="last_name">
     <p>Birthdate (mm/dd/yyyy):</p>
-    <input type="text" name="birth_date">
+    <input type="date" name="birth_date">
     <p>Email:</p>
     <input type="text" name="email">
     <p>Password:</p>

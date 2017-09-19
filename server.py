@@ -28,8 +28,9 @@ def valid():
         flash("Birthdate must not be blank!")
         valid = False
     else:
+        print request.form["birth_date"]
         try:
-            birth_date = datetime.datetime.strptime(request.form["birth_date"], "%m/%d/%Y").date()
+            birth_date = datetime.datetime.strptime(request.form["birth_date"], "%Y-%m-%d").date()
             if birth_date > datetime.date.today():
                 flash("Birthdate cannot be in the future!")
                 valid = False
